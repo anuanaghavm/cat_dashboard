@@ -1,0 +1,125 @@
+/* Reset */
+* {
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Page Background */
+.page-wrapper {
+  height: 90vh;
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Login Container */
+.login-box {
+  display: flex;
+  width: 750px;
+  height: 450px;
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow:  20px 20px rgba(3, 158, 163, 0.1);
+  overflow: hidden;
+}
+
+/* Left Logo Section */
+.logo-section {
+  background-color: #f7f8fb;
+  width: 40%;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-right: 1px solid #e0e0e0;
+}
+
+.logo-image {
+  width: 350px;         /* Increase size */
+  height: auto;         /* Maintain aspect ratio */
+  margin-bottom: 20px;
+  object-fit: contain;
+}
+
+
+.logo-section h1 {
+  font-size: 22px;
+  color: #1a1a4b;
+  margin-top: 10px;
+}
+
+/* Right Form Section */
+.form-section {
+  width: 60%;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.form-section h2 {
+  color: #1a1a4b;
+  font-size: 24px;
+  margin-bottom: 25px;
+}
+
+.form-section input[type="email"],
+.form-section input[type="password"] {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 18px;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  background-color: transparent;
+  font-size: 15px;
+  transition: border-color 0.3s;
+}
+
+.form-section input:focus {
+  border-bottom: 1px solid #1a1a4b;
+}
+
+.remember-row {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+
+.remember-row input {
+  margin-right: 8px;
+}
+
+button[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  background-color: #a7f0d1;
+  border: none;
+  border-radius: 25px;
+  color: #1a1a4b;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+  background-color: #8ce4bd;
+}
+
+.forgot-link {
+  font-size: 12px;
+  color: #888;
+  margin-top: 15px;
+  text-decoration: none;
+  display: block;
+  text-align: right;
+}
+
+.forgot-link:hover {
+  color: #1a1a4b;
+}
