@@ -20,6 +20,10 @@ const Slottime = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [editId, setEditId] = useState(null);
+  
+  // Pagination states
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(10);
 
   useEffect(() => {
     fetchSlottime();
@@ -36,6 +40,15 @@ const Slottime = () => {
       console.error("Error fetching slottime:", error);
     }
   };
+
+  // Get current items for pagination
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = slottime.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(slottime.length / itemsPerPage);
+
+  // Change page
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   const handleNew = () => {
     setShowForm(true);
@@ -117,51 +130,118 @@ const Slottime = () => {
         <button className="btn btn-primary" onClick={handleNew}>Add New</button>
       </div>
 
-      <table className="table mt-3">
-        <thead>
-          <tr>
-            <th>Sl. No</th>
-            <th>Session Type</th>
-            <th>Start Time</th>
-            <th>End Time</th>
-            <th>Max Capacity</th>
-            <th>Time Period</th>
-            <th>Date</th>
-            <th>Zoom Link</th>
-            <th>Course Name</th>
-            <th>Time Duration</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {slottime.length > 0 ? (
-            slottime.map((slot, index) => (
-              <tr key={slot.id}>
-                <td>{index + 1}</td>
-                <td>{slot.session_type}</td>
-                <td>{slot.start_time}</td>
-                <td>{slot.end_time}</td>
-                <td>{slot.max_capacity}</td>
-                <td>{slot.time_period}</td>
-                <td>{slot.date}</td>
-                <td>
-                  <a href={slot.zoom_link} target="_blank" rel="noreferrer">Link</a>
-                </td>
-                <td>{slot.course_name}</td>
-                <td>{slot.time_duration}</td>
-                <td>
-                  <button className="btn btn-warning btn-sm mx-1" onClick={() => handleEdit(slot)}><AiFillEdit /></button>
-                  <button className="btn btn-danger btn-sm" onClick={() => handleDelete(slot.id)}><AiFillDelete /></button>
-                </td>
-              </tr>
-            ))
-          ) : (
+      <div className="table-responsive">
+        <table className="table">
+          <thead>
             <tr>
-              <td colSpan="11" className="text-center">No slots found.</td>
+              <th style={{ width: '70px' }}>Sl. No</th>
+              <th style={{ minWidth: '120px' }}>Session Type</th>
+              <th style={{ minWidth: '120px' }}>Start Time</th>
+              <th style={{ minWidth: '120px' }}>End Time</th>
+              <th style={{ minWidth: '120px' }}>Max Capacity</th>
+              <th style={{ minWidth: '120px' }}>Time Period</th>
+              <th style={{ minWidth: '120px' }}>Date</th>
+              <th style={{ minWidth: '120px' }}>Zoom Link</th>
+              <th style={{ minWidth: '120px' }}>Course Name</th>
+              <th style={{ minWidth: '120px' }}>Time Duration</th>
+              <th style={{ width: '120px' }}>Actions</th>
             </tr>
-          )}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {currentItems.length > 0 ? (
+              currentItems.map((slot, index) => (
+                <tr key={slot.id}>
+                  <td className="text-center">{indexOfFirstItem + index + 1}</td>
+                  <td className="text-center">{slot.session_type}</td>
+                  <td className="text-center">{slot.start_time}</td>
+                  <td className="text-center">{slot.end_time}</td>
+                  <td className="text-center">{slot.max_capacity}</td>
+                  <td className="text-center">{slot.time_period}</td>
+                  <td className="text-center">{slot.date}</td>
+                  <td className="text-center">
+                    {slot.zoom_link ? (
+                      <a 
+                        href={slot.zoom_link} 
+                        target="_blank" 
+                        rel="noreferrer"
+                        className="btn btn-sm btn-info"
+                      >
+                        Join
+                      </a>
+                    ) : '-'}
+                  </td>
+                  <td className="text-center">{slot.course_name}</td>
+                  <td className="text-center">{slot.time_duration}</td>
+                  <td className="text-center">
+                    <button
+                      className="btn btn-warning btn-sm mx-1"
+                      onClick={() => handleEdit(slot)}
+                      title="Edit"
+                    >
+                      <AiFillEdit />
+                    </button>
+                    <button
+                      className="btn btn-danger btn-sm"
+                      onClick={() => handleDelete(slot.id)}
+                      title="Delete"
+                    >
+                      <AiFillDelete />
+                    </button>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="11" className="text-center">No slots found.</td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
+
+      {/* Pagination */}
+      {slottime.length > 0 && (
+        <div className="d-flex justify-content-between align-items-center mt-3">
+          <div className="text-muted">
+            Showing {indexOfFirstItem + 1} to {Math.min(indexOfLastItem, slottime.length)} of {slottime.length} entries
+          </div>
+          <nav>
+            <ul className="pagination pagination-sm mb-0">
+              <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
+                <button
+                  className="page-link"
+                  onClick={() => paginate(currentPage - 1)}
+                  disabled={currentPage === 1}
+                >
+                  Previous
+                </button>
+              </li>
+              {[...Array(totalPages)].map((_, index) => (
+                <li
+                  key={index + 1}
+                  className={`page-item ${currentPage === index + 1 ? 'active' : ''}`}
+                >
+                  <button
+                    className="page-link"
+                    onClick={() => paginate(index + 1)}
+                  >
+                    {index + 1}
+                  </button>
+                </li>
+              ))}
+              <li className={`page-item ${currentPage === totalPages ? 'disabled' : ''}`}>
+                <button
+                  className="page-link"
+                  onClick={() => paginate(currentPage + 1)}
+                  disabled={currentPage === totalPages}
+                >
+                  Next
+                </button>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      )}
 
       <Modal size="mg" centered show={showForm} onHide={() => setShowForm(false)}>
         <div className="modal-content p-3">

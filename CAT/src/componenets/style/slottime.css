@@ -52,3 +52,137 @@
     align-items: center;
   }
   
+  .table {
+    margin-bottom: 0;
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  .table th,
+  .table td {
+    border: 1px solid #dee2e6;
+    padding: 8px 12px !important;
+    vertical-align: middle;
+    height: 45px !important;
+    min-height: 45px;
+  }
+  
+  .table thead tr {
+    background-color: #E8EAF6;
+    border: 1px solid #dee2e6;
+    height: 45px !important;
+  }
+  
+  .table thead th {
+    font-weight: 700;
+    color: #1A237E;
+    border: 1px solid #dee2e6;
+    white-space: nowrap;
+    position: relative;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    padding: 8px 12px !important;
+    text-align: center;
+    vertical-align: middle;
+    width: 130px !important;
+    min-width: 130px !important;
+  }
+  
+  .table tbody tr {
+    border: 1px solid #dee2e6;
+    height: 45px !important;
+  }
+  
+  .table tbody tr:nth-child(even) {
+    background-color: #fafafa;
+  }
+  
+  .table tbody tr:hover {
+    background-color: #f0f7ff;
+  }
+  
+  .table tbody td {
+    padding: 8px 12px !important;
+    color: #333;
+    font-size: 0.9rem;
+    width: 130px !important;
+    min-width: 130px !important;
+  }
+  
+  .pagination {
+    margin: 0;
+  }
+  
+  .pagination .page-link {
+    color: #1A237E;
+    border-color: #dee2e6;
+    padding: 0.375rem 0.75rem;
+  }
+  
+  .pagination .page-item.active .page-link {
+    background-color: #1A237E;
+    border-color: #1A237E;
+    color: white;
+  }
+  
+  .pagination .page-item.disabled .page-link {
+    color: #6c757d;
+    pointer-events: none;
+    background-color: #fff;
+    border-color: #dee2e6;
+  }
+  
+  .pagination .page-link:hover {
+    background-color: #E8EAF6;
+    border-color: #dee2e6;
+    color: #1A237E;
+  }
+  
+  .btn-info {
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+    color: white;
+  }
+  
+  .btn-info:hover {
+    background-color: #138496;
+    border-color: #117a8b;
+    color: white;
+  }
+  
+  /* Specific column widths */
+  .table th:first-child,
+  .table td:first-child {
+    width: 60px !important;
+    min-width: 60px !important;
+  }
+  
+  .table th:last-child,
+  .table td:last-child {
+    width: 100px !important;
+    min-width: 100px !important;
+  }
+  
+  /* Action buttons */
+  .btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.8rem;
+  }
+  
+  /* Make the table container full width and scrollable */
+  .table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 15px;
+  }
+  
+  /* Container adjustments */
+  .container {
+    max-width: 98% !important;
+    margin: 20px auto;
+    padding: 20px;
+  }
+  

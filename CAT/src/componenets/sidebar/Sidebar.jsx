@@ -62,7 +62,7 @@ const Sidebar = () => {
       <ul className="nav flex-column text-white">
 
         {/* Home */}
-        <li className="nav-item">
+        {/* <li className="nav-item">
           <div
             className="nav-link d-flex align-items-center gap-2"
             style={navItemStyle("/home")}
@@ -71,7 +71,7 @@ const Sidebar = () => {
             <BiHome size={18} />
             Home
           </div>
-        </li>
+        </li> */}
 
         {/* Dashboard */}
         <li className="nav-item">
@@ -176,8 +176,8 @@ const Sidebar = () => {
         <li className="nav-item">
           <div
             className="nav-link d-flex  align-items-center gap-2"
-            style={navItemStyle("/contactus")}
-            onClick={() => navigate("/contactus")}
+            style={navItemStyle("/contact")}
+            onClick={() => navigate("/contact")}
           >
             <IoMdContact size={18} />
             Contact

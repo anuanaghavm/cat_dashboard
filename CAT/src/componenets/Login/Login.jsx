@@ -25,7 +25,7 @@ const LoginPage = () => {
     ) {
       setMessage("Login successful!");
       setTimeout(() => {
-        navigate("/home");
+        navigate("/booking");
       }, 1000);
     } else {
       setMessage("Invalid email or password.");
